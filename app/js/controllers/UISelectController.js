@@ -4,7 +4,7 @@
  * performs a AND between 'name: $select.search' and 'age: $select.search'.
  * We want to perform a OR.
  */
-angular.module('parkalot').filter('propsFilter', function() {
+angular.module('otsmi').filter('propsFilter', function() {
     return function(items, props) {
         var out = [];
 
@@ -36,7 +36,7 @@ angular.module('parkalot').filter('propsFilter', function() {
     };
 });
 
-angular.module('parkalot').controller('UISelectController', function($scope, $http, $timeout, $interval) {
+angular.module('otsmi').controller('UISelectController', function($scope, $http, $timeout, $interval) {
     $scope.$on('$viewContentLoaded', function() {
         //App.initAjax(); // initialize core components
     });

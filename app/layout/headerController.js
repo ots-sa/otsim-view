@@ -4,7 +4,7 @@
     'use strict';
 
     angular
-        .module('parkalot')
+        .module('otsmi')
         .controller('HeaderController', HeaderController);
 
     HeaderController.inject = ['$scope'];

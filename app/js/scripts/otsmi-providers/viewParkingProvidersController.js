@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('parkalot.parking.providers')
+        .module('otsmi')
         .controller('ViewParkingProvidersController', ViewParkingProvidersController);
 
     ViewParkingProvidersController.$inject = ['$scope', 'ParkingProviderService', 'AlerterService'];

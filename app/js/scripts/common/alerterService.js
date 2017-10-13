@@ -3,11 +3,11 @@
 
     /**
      * @ngdoc service
-     * @name parkalot.service:AlerterService
+     * @name otsmi.service:AlerterService
      * @description Contains wrapper functions which help us use Metronic theme alert API.
      */
     angular
-        .module('parkalot')
+        .module('otsmi')
         .factory('AlerterService', AlerterService);
 
     AlerterService.inject = [];

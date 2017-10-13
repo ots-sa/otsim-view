@@ -1,6 +1,6 @@
 /**
  * @ngdoc Directive
- * @name parkalot.directive:paLanguageSwitcher
+ * @name otsmi.directive:paLanguageSwitcher
  * @description Provides a language switcher component which can be used
  *              to change UI language and retranslate all visible strings. Currently
  *              the supported UI translations are English (en_US) and Greek (el_GR).
@@ -14,7 +14,7 @@
     'use strict';
 
     angular
-        .module('parkalot')
+        .module('otsmi')
         .directive('paLanguageSwitcher', paLanguageSwitcher);
 
     paLanguageSwitcher.inject = ['$translate', '$state', '$rootScope'];

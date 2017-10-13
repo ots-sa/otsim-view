@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('parkalot.parking.providers')
+        .module('otsmi')
         .factory('ParkingProviderService', ParkingProviderService);
 
     ParkingProviderService.inject = ['CommonService', '$http'];

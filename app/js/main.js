@@ -1,26 +1,26 @@
 /***
-Parkalot AngularJS App Main Script
+otsmi AngularJS App Main Script
 ***/
 
-/* Parkalot App */
-angular.module("parkalot", [
+/* otsmi App */
+angular.module("otsmi", [
     "ui.router",
     "ui.bootstrap",
     "pascalprecht.translate",
     "oc.lazyLoad",
     "ngSanitize",
-    "parkalot.parking.providers"
+    "angular-simple-chat"
 ]);
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
-angular.module("parkalot").config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
+angular.module("otsmi").config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         // global configs go here
     });
 }]);
 
 //AngularJS v1.3.x workaround for old style controller declarition in HTML
-angular.module("parkalot").config(['$controllerProvider', function ($controllerProvider) {
+angular.module("otsmi").config(['$controllerProvider', function ($controllerProvider) {
     // this option might be handy for migrating old apps, but please don't use it
     // in new ones!
     $controllerProvider.allowGlobals();
@@ -31,7 +31,7 @@ angular.module("parkalot").config(['$controllerProvider', function ($controllerP
 *********************************************/
 
 /* Setup global settings */
-angular.module("parkalot").factory('settings', ['$rootScope', function ($rootScope) {
+angular.module("otsmi").factory('settings', ['$rootScope', function ($rootScope) {
     // supported languages
     var settings = {
         layout: {
@@ -51,7 +51,7 @@ angular.module("parkalot").factory('settings', ['$rootScope', function ($rootSco
 }]);
 
 /* Setup App Main Controller */
-angular.module("parkalot").controller('AppController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+angular.module("otsmi").controller('AppController', ['$scope', '$rootScope', function ($scope, $rootScope) {
     $scope.$on('$viewContentLoaded', function () {
         //App.initComponents(); // init core components
         //Layout.init(); //  Init entire layout(header, footer, sidebar, etc) on page load if the partials included in server side instead of loading with ng-include directive 
@@ -67,14 +67,14 @@ initialization can be disabled and Layout.init() should be called on page load c
 /* Setup Layout Part - Header The controller has moved to a different file */
 
 /* Setup Layout Part - Sidebar */
-angular.module("parkalot").controller('SidebarController', ['$state', '$scope', function ($state, $scope) {
+angular.module("otsmi").controller('SidebarController', ['$state', '$scope', function ($state, $scope) {
     $scope.$on('$includeContentLoaded', function () {
         Layout.initSidebar($state); // init sidebar
     });
 }]);
 
 /* Setup Layout Part - Quick Sidebar */
-angular.module("parkalot").controller('QuickSidebarController', ['$scope', function ($scope) {
+angular.module("otsmi").controller('QuickSidebarController', ['$scope', function ($scope) {
     $scope.$on('$includeContentLoaded', function () {
         setTimeout(function () {
             QuickSidebar.init(); // init quick sidebar        
@@ -83,14 +83,14 @@ angular.module("parkalot").controller('QuickSidebarController', ['$scope', funct
 }]);
 
 /* Setup Layout Part - Theme Panel */
-angular.module("parkalot").controller('ThemePanelController', ['$scope', function ($scope) {
+angular.module("otsmi").controller('ThemePanelController', ['$scope', function ($scope) {
     $scope.$on('$includeContentLoaded', function () {
         Demo.init(); // init theme panel
     });
 }]);
 
 /* Setup Layout Part - Footer */
-angular.module("parkalot").controller('FooterController', ['$scope', function ($scope) {
+angular.module("otsmi").controller('FooterController', ['$scope', function ($scope) {
     $scope.$on('$includeContentLoaded', function () {
         Layout.initFooter(); // init footer
     });
@@ -100,10 +100,10 @@ angular.module("parkalot").controller('FooterController', ['$scope', function ($
  * Setup Rounting For Index Pages. Every applicaation module component will have its custom *.route.js file
  * according to johnpapa/angular-styleguide (https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md).
  *  
- * For example if you want to examine or edit the routing of 'parkalot.parking.providers' module you will have to
- * look into 'parking.providers.route.js' file
+ * For example if you want to examine or edit the routing of 'otsmi' module you will have to
+ * look into 'otsmi.route.js' file
  */
-angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider) {
+angular.module("otsmi").config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider) {
     // Redirect any unmatched url
     $urlRouterProvider.otherwise("/dashboard");
 
@@ -127,6 +127,33 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
 
     $stateProvider
 
+        // Login Page
+        .state('login', {
+            url: "/login",
+            templateUrl: "js/scripts/login/userLogin.html",
+            data: { pageTitle: 'Login | OTS MI' },
+            controller: "CreateUserLoginController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'otsmi',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            '../node_modules/morris.js/morris.css',
+                            '../node_modules/morris.js/morris.min.js',
+                            '../node_modules/raphael/raphael.min.js',
+                            '../node_modules/jquery-sparkline/jquery.sparkline.min.js',
+                            '../assets/pages/scripts/dashboard.min.js',
+                            'js/scripts/login/userLoginController.js',
+                            'js/scripts/login/userLoginService.js',
+                            'js/scripts/common/commonService.js',
+                            'js/scripts/common/alerterService.js',
+                        ]
+                    });
+                }]
+            }
+        })
+
         // Dashboard
         .state('dashboard', {
             url: "/dashboard",
@@ -136,7 +163,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
-                        name: 'parkalot',
+                        name: 'otsmi',
                         insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                         files: [
                             '../node_modules/morris.js/morris.css',
@@ -160,7 +187,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
-                        name: 'parkalot',
+                        name: 'otsmi',
                         insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                         files: [
                             'js/controllers/BlankController.js'
@@ -184,7 +211,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
                             '../node_modules/angular-file-upload/dist/angular-file-upload.min.js',
                         ]
                     }, {
-                        name: 'parkalot',
+                        name: 'otsmi',
                         files: [
                             'js/controllers/GeneralPageController.js'
                         ]
@@ -209,7 +236,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
                             '../node_modules/ui-select/dist/select.min.js'
                         ]
                     }, {
-                        name: 'parkalot',
+                        name: 'otsmi',
                         files: [
                             'js/controllers/UISelectController.js'
                         ]
@@ -227,7 +254,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load([{
-                        name: 'parkalot',
+                        name: 'otsmi',
                         files: [
                             'js/controllers/GeneralPageController.js'
                         ]
@@ -245,7 +272,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load([{
-                        name: 'parkalot',
+                        name: 'otsmi',
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
                             '../node_modules/jstree/dist/themes/default/style.min.css',
@@ -268,7 +295,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
-                        name: 'parkalot',
+                        name: 'otsmi',
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
                             '../node_modules/bootstrap-fileinput/css/fileinput.css',
@@ -316,7 +343,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
-                        name: 'parkalot',
+                        name: 'otsmi',
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
                             '../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
@@ -340,7 +367,7 @@ angular.module("parkalot").config(['$stateProvider', '$urlRouterProvider', '$tra
 }]);
 
 /* Init global settings and run the app */
-angular.module("parkalot").run(["$rootScope", "settings", "$state", function ($rootScope, settings, $state) {
+angular.module("otsmi").run(["$rootScope", "settings", "$state", function ($rootScope, settings, $state) {
     $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$settings = settings; // state to be accessed from view
 }]);

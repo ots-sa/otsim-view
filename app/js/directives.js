@@ -3,7 +3,7 @@ GLobal Directives
 ***/
 
 // Route State Load Spinner(used on page or content load)
-angular.module('parkalot').directive('ngSpinnerBar', ['$rootScope', '$state',
+angular.module('otsmi').directive('ngSpinnerBar', ['$rootScope', '$state',
     function($rootScope, $state) {
         return {
             link: function(scope, element, attrs) {
@@ -42,7 +42,7 @@ angular.module('parkalot').directive('ngSpinnerBar', ['$rootScope', '$state',
 ])
 
 // Handle global LINK click
-angular.module('parkalot').directive('a', function() {
+angular.module('otsmi').directive('a', function() {
     return {
         restrict: 'E',
         link: function(scope, elem, attrs) {
@@ -56,7 +56,7 @@ angular.module('parkalot').directive('a', function() {
 });
 
 // Handle Dropdown Hover Plugin Integration
-angular.module('parkalot').directive('dropdownMenuHover', function () {
+angular.module('otsmi').directive('dropdownMenuHover', function () {
   return {
     link: function (scope, elem) {
       elem.dropdownHover();
