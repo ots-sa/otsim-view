@@ -1,0 +1,21 @@
+<!-- UI Language selection directive  -->
+
+<!-- BEGIN LANGUAGE BAR -->
+<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+<a href="#" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true" title="{{'select-language' | translate}}">
+        <img alt="" ng-src="../assets/global/img/flags/{{getIconFlagLanguage()}}.png">
+        <span class="langname"> {{getSelectedLanguageLabel()}} </span>
+        <i class="fa fa-angle-down"></i>
+    </a>
+<ul class="dropdown-menu dropdown-menu-default">
+    <li ng-class="getActiveLanguageClass('en')" ng-click="toggleLanguage('en')" title="{{'english' | translate}}">
+        <a href="#">
+                <img alt="Flag of the United States of America to select english translation"  src="../assets/global/img/flags/us.png"> EN </a>
+    </li>
+    <li ng-class="getActiveLanguageClass('el')" ng-click="toggleLanguage('el')" title="{{'greek' | translate}}">
+        <a href="#">
+                <img alt="Flag of Greece to select greek translation"  src="../assets/global/img/flags/gr.png"> EL </a>
+    </li>
+</ul>
+<!-- END LANGUAGE BAR -->

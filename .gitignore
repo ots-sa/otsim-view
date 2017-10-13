@@ -1,0 +1,34 @@
+bower_components/
+node_modules/
+assets/global/img/portfolio/
+assets/global/plugins/
+
+
+# Exclude .css files which are generated from SASS files
+assets/global/css
+assets/apps/css
+assets/pages/css
+
+assets/layouts/layout/css
+assets/layouts/layout2/css
+assets/layouts/layout3/css
+assets/layouts/layout4/css
+assets/layouts/layout5/css
+assets/layouts/layout6/css
+assets/layouts/layout7/css
+
+# Exclude minified .js files
+
+assets/global/scripts/app.min.js
+assets/layouts/global/scripts/*.min.js
+assets/pages/scripts/*.min.js
+assets/apps/scripts
+
+assets/layouts/layout/scripts/*.min.js
+assets/layouts/layout2/scripts/*.min.js
+assets/layouts/layout3/scripts/*.min.js
+assets/layouts/layout4/scripts/*.min.js
+assets/layouts/layout5/scripts/*.min.js
+assets/layouts/layout6/scripts/*.min.js
+assets/layouts/layout7/scripts/*.min.js
+nbproject/
