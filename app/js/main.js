@@ -99,9 +99,6 @@ angular.module("otsmi").controller('FooterController', ['$scope', function ($sco
 /**
  * Setup Rounting For Index Pages. Every applicaation module component will have its custom *.route.js file
  * according to johnpapa/angular-styleguide (https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md).
- *  
- * For example if you want to examine or edit the routing of 'otsmi' module you will have to
- * look into 'otsmi.route.js' file
  */
 angular.module("otsmi").config(['$stateProvider', '$urlRouterProvider', '$translateProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $translateProvider, $locationProvider) {
     // Redirect any unmatched url
@@ -149,6 +146,7 @@ angular.module("otsmi").config(['$stateProvider', '$urlRouterProvider', '$transl
                             'js/scripts/login/userLoginService.js',
                             'js/scripts/common/commonService.js',
                             'js/scripts/common/alerterService.js',
+                            'js/scripts/login/roomChatComponent.js'
                         ]
                     });
                 }]
