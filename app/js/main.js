@@ -133,6 +133,7 @@ angular.module("otsmi").config(['$stateProvider', '$urlRouterProvider', '$transl
             templateUrl: "js/scripts/login/userLogin.html",
             data: { pageTitle: 'Login | OTS MI' },
             controller: "CreateUserLoginController",
+            controllerAs: "createUserLoginController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({

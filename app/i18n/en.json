@@ -22,5 +22,7 @@
     "button-save": "Save",
     "button-cancel": "Cancel",
     "providers-title-list": "Parking Provider List",
-    "Send": "Send"
+    "Send": "Send",
+    "ChatRoom": "Chat Room",
+    "RoomsToChat": "Chat Rooms"
 }
