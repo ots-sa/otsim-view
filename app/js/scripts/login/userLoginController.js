@@ -18,9 +18,9 @@
 
         function login() {
 
-            UserLoginService.loginUser(postData)
-                .success(onPostSuccess)
-                .error(onPostError);
+            // UserLoginService.loginUser(postData)
+            //     .success(onPostSuccess)
+            //     .error(onPostError);
         }
 
         function onPostSuccess(result) {
@@ -45,10 +45,23 @@
         }
 
         var init = function() {
+
+            var validNames = [
+
+            ];
+
+            vm.chatObj = {
+                'messages': [],
+                'userInfo' :{
+                    userId: 'glioliouId', 
+                    avatar: 'string', 
+                    userName: 'glioliou'}
+            };
+
             vm.user = {
                 "username" : null,
                 "password": null
-            }
+            };
         }
 
         init();

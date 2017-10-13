@@ -21,5 +21,6 @@
     "providers-form-address-country": "Country",
     "button-save": "Save",
     "button-cancel": "Cancel",
-    "providers-title-list": "Parking Provider List"
+    "providers-title-list": "Parking Provider List",
+    "Send": "Send"
 }
